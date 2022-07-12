@@ -24,4 +24,5 @@ class ArithmeticOperatorsTest {
 		boolean actual = ArithmeticOperators.isOperator(operator);
 		assertThat(actual).isTrue();
 	}
+	
 }
