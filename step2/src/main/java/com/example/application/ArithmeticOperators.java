@@ -7,7 +7,7 @@ import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 
 public enum ArithmeticOperators {
-	PLUS("+", (left, right) -> left + right),
+	PLUS("+", Double::sum),
 	SUBTRACT("-", (left, right) -> (left - right)),
 	MULTIPLY("*", (left, right) -> (left * right)),
 	DIVIDE("/", (left, right) -> {
@@ -18,7 +18,7 @@ public enum ArithmeticOperators {
 		return result;
 	});
 
-	private static final String OPERATOR_VALUE = "^[\\+\\-\\*\\/]$";
+	private static final String OPERATOR_VALUE = "^[+\\-*/]$";
 	private final String operator;
 	private final BiFunction<Double, Double, Double> expression;
 
@@ -29,16 +29,20 @@ public enum ArithmeticOperators {
 
 	public static ArithmeticOperators of(String operator) {
 		return Arrays.stream(values())
-				.filter(op -> op.operator.equals(operator))
+				.filter(op -> isMatchesOperator(operator, op))
 				.findFirst()
 				.orElseThrow(() -> new NotSupportedOperationException(operator));
 	}
-
+	
 	public static boolean isOperator(String userInput) {
 		return userInput.matches(OPERATOR_VALUE);
 	}
-
+	
 	public double calculate(Operand left, Operand right) {
 		return expression.apply(left.value(), right.value());
+	}
+	
+	private static boolean isMatchesOperator(String operator, ArithmeticOperators op) {
+		return op.operator.equals(operator);
 	}
 }
