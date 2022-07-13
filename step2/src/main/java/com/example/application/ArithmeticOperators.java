@@ -3,6 +3,7 @@ package com.example.application;
 import com.example.exception.NotSupportedOperationException;
 
 import java.util.Arrays;
+import java.util.Optional;
 import java.util.function.BiFunction;
 import java.util.function.BinaryOperator;
 
@@ -35,7 +36,9 @@ public enum ArithmeticOperators {
 	}
 	
 	public static boolean isOperator(String userInput) {
-		return userInput.matches(OPERATOR_VALUE);
+		return Optional.ofNullable(userInput)
+			.filter(s -> s.matches(OPERATOR_VALUE))
+			.isPresent();
 	}
 	
 	public double calculate(Operand left, Operand right) {

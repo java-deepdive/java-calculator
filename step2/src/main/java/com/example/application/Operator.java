@@ -12,6 +12,6 @@ public class Operator {
     }
 
     public double calculate(Operand left, Operand right) {
-        return value.calculate(left, right);
+        return Math.round(value.calculate(left, right) * 100) / 100.0;
     }
 }
