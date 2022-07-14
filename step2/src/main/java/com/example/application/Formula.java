@@ -9,7 +9,7 @@ public class Formula {
 	private final Queue<Operand> operands;
 	private final Queue<Operator> operators;
 
-	public Formula(String[] inputs) {
+	public Formula(String... inputs) {
 		validateFormulaLength(inputs);
 		operands = new LinkedList<>();
 		operators = new LinkedList<>();
