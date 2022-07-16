@@ -5,11 +5,11 @@ import com.example.exception.NotCalculateFormulaException;
 import java.util.LinkedList;
 import java.util.Queue;
 
-public class Formula {
+public class Expression {
 	private final Queue<Operand> operands;
 	private final Queue<Operator> operators;
 
-	public Formula(String... inputs) {
+	public Expression(String... inputs) {
 		validateFormulaLength(inputs);
 		operands = new LinkedList<>();
 		operators = new LinkedList<>();

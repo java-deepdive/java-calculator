@@ -1,14 +1,14 @@
 package com.example.application;
 
 public class Operator {
-    private final ArithmeticOperators value;
+    private final OperationProcessor value;
 
-    public Operator(ArithmeticOperators value) {
+    public Operator(OperationProcessor value) {
         this.value = value;
     }
 
     public Operator(String input) {
-        this(ArithmeticOperators.of(input));
+        this(OperationProcessor.of(input));
     }
 
     public double calculate(Operand left, Operand right) {

@@ -6,11 +6,11 @@ public class Calculator {
 	private Calculator() {
 	}
 
-	public static double calculate(Formula formula) {
-        Operand result = formula.operand();
-        while(formula.size() > ZERO_SIZE) {
-            Operator operator = formula.operator();
-            Operand operand = formula.operand();
+	public static double calculate(Expression expression) {
+        Operand result = expression.operand();
+        while(expression.size() > ZERO_SIZE) {
+            Operator operator = expression.operator();
+            Operand operand = expression.operand();
             result = new Operand(operator.calculate(result, operand));
         }
         return result.value();
