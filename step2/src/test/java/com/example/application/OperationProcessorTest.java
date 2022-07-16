@@ -7,13 +7,13 @@ import org.junit.jupiter.params.provider.ValueSource;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-class ArithmeticOperatorsTest {
+class OperationProcessorTest {
 	
 	@DisplayName("연산자 검증 테스트")
 	@ParameterizedTest(name = "{0} 산술 연산 가능한 연산자 테스트")
 	@ValueSource(strings = {"+", "*", "/", "-"})
 	void testCase1(String operator) {
-		boolean actual = ArithmeticOperators.isOperator(operator);
+		boolean actual = OperationProcessor.isOperator(operator);
 		assertThat(actual).isTrue();
 	}
 	
@@ -21,7 +21,7 @@ class ArithmeticOperatorsTest {
 	@NullAndEmptySource
 	@ParameterizedTest(name = "'{0}' 값 확인 ")
 	void testCase2(String operator) {
-		boolean actual = ArithmeticOperators.isOperator(operator);
+		boolean actual = OperationProcessor.isOperator(operator);
 		assertThat(actual).isFalse();
 	}
 }

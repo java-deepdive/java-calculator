@@ -20,13 +20,13 @@ import static org.junit.jupiter.api.Assertions.assertAll;
  * 2. 식은 피 연산자 > 연산자 > 피 연산자 순으로 나열한다.
  * 3. 홀수 개의 연산자와 짝수 개의 피 연산자를 포함한다.
  */
-class FormulaTest {
+class ExpressionTest {
 	
 	@DisplayName("식의 유효성 검사 실패 테스트")
 	@Test
 	void testCase1() {
 		assertThatExceptionOfType(NotCalculateFormulaException.class)
-			.isThrownBy(() -> new Formula("2", "+"));
+			.isThrownBy(() -> new Expression("2", "+"));
 	}
 	
 	private static Stream<Arguments> dummyOperand() {
@@ -39,16 +39,16 @@ class FormulaTest {
 	@MethodSource(value = "dummyOperand")
 	@ParameterizedTest(name = "{0} {1} {2} 식에 대한 연산")
 	void testCase2(String left, String operator, String right) {
-		Formula formula = new Formula(left, operator, right);
+		Expression expression = new Expression(left, operator, right);
 		
 		assertAll(
 			() -> {
-				Operand actual = formula.operand();
+				Operand actual = expression.operand();
 				double expected = Double.parseDouble(left);
 				assertThat(actual.value()).isEqualTo(expected);
 			},
 			() -> {
-				Operand actual = formula.operand();
+				Operand actual = expression.operand();
 				double expected = Double.parseDouble(right);
 				assertThat(actual.value()).isEqualTo(expected);
 			}
@@ -59,8 +59,8 @@ class FormulaTest {
 	@MethodSource(value = "dummyOperand")
 	@ParameterizedTest(name = "{0} {1} {2} 식에 대한 연산")
 	void testCase3(String left, String operator, String right) {
-		Formula formula = new Formula(left, operator, right);
-		int size = formula.size();
+		Expression expression = new Expression(left, operator, right);
+		int size = expression.size();
 		assertThat(size).isEqualTo(3);
 	}
 }
